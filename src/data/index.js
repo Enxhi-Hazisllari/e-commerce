@@ -46,5 +46,21 @@ export const products = [
         description: "Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore et dolore magna",
         image: "/images/products/bag_06.png",
         amount: 1,
+    },
+    {
+        id: 7,
+        name: "Charming Series",
+        price: 689.99,
+        description: "Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore et dolore magna",
+        image: "/images/banner/shopp.jpeg",
+        amount: 1,
+    },
+    {
+        id: 8,
+        name: "Charming Series",
+        price: 689.99,
+        description: "Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore et dolore magna",
+        image: "/images/banner/shoping.webp",
+        amount: 1,
     }
 ]

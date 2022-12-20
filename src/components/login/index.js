@@ -49,7 +49,7 @@ export default function Login({open,onClose}) {
             <DialogTitle>
             <Box
                 display= {'flex'}
-                alignItems ='space-beetween'
+                alignItems ='space-between'
                 justifyContent = 'center'
                 >
                 Login
