@@ -30,7 +30,7 @@ export default function Cart(product) {
                 {!matches && <Typography variant = "subtitles"> {item.description}</Typography>}
                 </Box>
                 <Typography variant = "body2" justifyContent={'end'}> 
-                $ {item.price}
+                {item.price} USD
                 </Typography>
             </Box>
                 {matches && <Typography variant = "subtitles"> {item.description}</Typography>}
@@ -99,7 +99,7 @@ export default function Cart(product) {
                 </Button>
         
                 <Typography variant= 'body' color = {Colors.black}>
-                    Total amount : ${price}
+                    Total amount : {price} USD
                 </Typography>
             </Box> 
             : <Box

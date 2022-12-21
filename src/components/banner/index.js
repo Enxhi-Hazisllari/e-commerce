@@ -6,11 +6,11 @@ export default function Banner () {
     
     return (
         <BannerContainer>
-            <BannerImage src="/images/banner/shop4.jpg"/>
+            <BannerImage src="/images/banner/cover.png"/>
             <BannerContent>
-                <Typography variant = "h6" >Huge Collection</Typography>
-                <BannerTitle variant = "h2"> new bags </BannerTitle>
-                <BannerDescription variant="subtitles" > hello buy from us with the best price</BannerDescription>
+                <Typography variant = "h6" >Your waiting time is over!</Typography>
+                <BannerTitle variant = "h2"> New Collection </BannerTitle>
+                <BannerDescription variant="subtitles" > Hello buy from us with the best price</BannerDescription>
                 <BannerShopButton color="secondary">Shop now</BannerShopButton>
             </BannerContent>
         </BannerContainer>

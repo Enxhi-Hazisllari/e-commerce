@@ -2,7 +2,7 @@ import { Box, Pagination } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import service from "../../services";
 
-const pageSize = 3;
+const pageSize = 9;
 
 export default function AppPagination({setProducts}) {
 
