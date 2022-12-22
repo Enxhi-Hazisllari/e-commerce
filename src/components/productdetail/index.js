@@ -45,10 +45,10 @@ export  function ProductDetail({open, onClose ,product}) {
             }}>
                 <Box
                 display= {'flex'}
-                alignItems ={'space-between'}
-                justifyContent = {'center'}
+                alignItems ={'center'}
+                justifyContent = {'space-between'}
                 >
-                    Product Title
+                  PRODUCT: {product.name}
                     <IconButton onClick={onClose}>
                         <CloseIcon />
                     </IconButton>

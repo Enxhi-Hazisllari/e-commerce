@@ -6,7 +6,6 @@ import { Box } from "@mui/system";
 import useCart from "../../hooks/useCart";
 import IncDec from "../ui";
 
-
 export default function Cart(product) {
 
     const {cart,setShowCart,showCart,price,setShowCheckout} = useUIContext();
@@ -15,25 +14,36 @@ export default function Cart(product) {
     
     const { removeFromCart,removeAllCart} = useCart(product)
 
-
     const cartContent = 
     cart.map ( item => (
         <Box key = {item.id}>
             <Box 
-                display={'flex'}
-                sx= {{pt : 2 , pb: 2}}
-                alignItems = 'start'
-                justifyContent={'space-between'}>
-                <Avatar src= {item.image} sx = {{width : 96 , height : 96 , mr:2}} />
+            display={'flex'}
+            sx= {{pt : 2 , pb: 2}}
+            alignItems = 'start'
+            >
+                {!matches && <Avatar src= {item.image} sx = {{width : 96 , height : 96 , mr:2}} />}
+
                 <Box display="flex" flexDirection={'column'}>
-                <Typography variant = "h6" > {item.name}</Typography>
-                {!matches && <Typography variant = "subtitles"> {item.description}</Typography>}
+                    {!matches &&<Typography variant = "h6" > {item.name}</Typography>}
+                    {!matches && <Typography variant = "subtitles"> {item.description}</Typography>}
+                    {!matches && <Typography variant = "h6" justifyContent={'center'} sx={{pt: 2}}>Price: {item.price} USD</Typography>}
                 </Box>
-                <Typography variant = "body2" justifyContent={'end'}> 
-                {item.price} USD
-                </Typography>
             </Box>
-                {matches && <Typography variant = "subtitles"> {item.description}</Typography>}
+
+            <Box
+            display={'flex'}
+            alignItems = 'start'
+            justifyContent={'space-between'}>
+
+                <Box display="flex" flexDirection={'column'}>
+                    {matches &&<Avatar src= {item.image} sx = {{width : 96, height : 96, mr:2}} />}
+                    {matches &&<Typography variant = "h6" > {item.name}</Typography>}
+                    {matches && <Typography variant = "subtitles"> {item.description}</Typography>}
+                    {matches && <Typography variant = "h6" justifyContent={'center'} sx={{pt: 2}}>Price: {item.price} USD</Typography>}
+                </Box>                
+            </Box>
+
                 <Box
                 display = 'flex'
                 justifyContent={'space-around'}
@@ -46,6 +56,7 @@ export default function Cart(product) {
                     onClick={() => removeFromCart(item.id)}
                     > Remove from cart</Button>
                 </Box>
+
                 <Divider variant="inset" />
         </Box>
     ))
@@ -60,23 +71,23 @@ export default function Cart(product) {
                 width: matches ? '100%' : 500,
                 background: Colors.light_gray,
                 borderRadius : 0
-
             }
         }}
         >
             {cart.length > 0 
-            ? <Box 
+            ? 
+            <Box 
             sx={{pd : 4 }}
             display = 'flex'
             justifyContent={'center'}
             flexDirection= 'column'
             alignItems={'center'}
             >
-                <Typography variant= 'h3' color = {Colors.black}>
+                <Typography variant= 'h3' color = {Colors.primary}>
                     Your Cart
                 </Typography>
-                <Typography variant= 'body' color = {Colors.muted}>
-                    SOME text some text some text
+                <Typography variant= 'body' color = {Colors.black}>
+                    THESE ARE THE PRODUCTS YOU CHOOSE
                 </Typography>
 
                 <Paper
@@ -87,13 +98,13 @@ export default function Cart(product) {
                         padding : 4,
                     }}
                 >
-
-             {cartContent}
+                {cartContent}
                 </Paper>
                 <Button 
                     sx= {{mt:1 , mb:0}} 
                     onClick={() => removeAllCart()}
                     > Clear cart</Button>
+
                 <Button sx = {{mt : 1}} variant = "contained" onClick = {() => setShowCheckout(true)}>
                     Proceed to payment
                 </Button>
@@ -102,7 +113,8 @@ export default function Cart(product) {
                     Total amount : {price} USD
                 </Typography>
             </Box> 
-            : <Box
+            : 
+            <Box
             sx = {{
                 p : 4,
             }}
@@ -111,7 +123,7 @@ export default function Cart(product) {
             flexDirection = 'column'
             alignItems={'center'}
             >
-                <Typography variant= {matches ? "h6" : "h5"} color = {Colors.black}>
+                <Typography variant= {matches ? "h6" : "h5"} color = {Colors.primary}>
                 Your cart is empty
                 </Typography>
             </Box>}
