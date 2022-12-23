@@ -15,6 +15,7 @@ import Cart from './components/cart';
 import Title from './components/title/title';
 import Checkout from './components/checkout';
 import UserProvider from './context/user';
+import { CssBaseline } from '@mui/material';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   
   return (
     <ThemeProvider theme = {theme}>
+      <CssBaseline />
      <Container maxWidth  = 'xl'>
       <UIProvider>
         <UserProvider>

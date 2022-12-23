@@ -1,4 +1,4 @@
-import { IconButton } from '@mui/material';
+import { CssBaseline, IconButton } from '@mui/material';
 import React from 'react';
 import { AppbarContainer, AppbarHeader } from '../../styles/appbar';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -12,6 +12,7 @@ export default function AppbarMobile({matches , onLoginClick , onLogoutClick}){
     const {setDrawerOpen , setShowSearchBox} = useUIContext()
     return (
         <AppbarContainer>
+        <CssBaseline />
             <IconButton onClick={()=> setDrawerOpen(true)}>
                 <MenuIcon/>
             </IconButton>

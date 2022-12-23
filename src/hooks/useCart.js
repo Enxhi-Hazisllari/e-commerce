@@ -7,8 +7,8 @@ function useCart(product){
     const handlePrice = () => {
         let total = 0;
         cart.map((product)=> (total += product.amount * product.price));
-        setPrice(Math.round(total)) // TODO
-        console.log(total) 
+        let roundedTotal = total.toFixed(2); 
+        setPrice(roundedTotal)
     }
 
     useEffect(()=>{
