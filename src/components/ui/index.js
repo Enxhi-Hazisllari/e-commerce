@@ -60,11 +60,7 @@ export default function IncDec({product}){
             </IconButton>
             <Typography
             variant="h6"
-            sx={{
-                border : `1px solid ${Colors.secondary}`,
-                p : 2
-            }}
-            >
+            sx={{border: `1px solid ${Colors.secondary}`,p: 1.5}}>
                 {amount}
             </Typography>
             <IconButton

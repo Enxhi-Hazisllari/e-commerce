@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import Container from '@mui/material/Container';
 import theme from './styles/theme';
@@ -19,7 +18,6 @@ import { CssBaseline } from '@mui/material';
 
 
 function App() {
-
   
   return (
     <ThemeProvider theme = {theme}>

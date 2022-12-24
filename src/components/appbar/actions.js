@@ -72,7 +72,7 @@ export default function Actions ({matches, onLogin , onLogout}) {
                 >   
                     <Box display = 'flex' flexDirection ='column'>
                     <PersonIcon/>
-                   {user && <Typography variant="caption"> {user.displayName} </Typography>}
+                    {user && <Typography variant="caption" color={Colors.secondary}> {user.displayName} </Typography>}
                     </Box>
                 </ListItemIcon>
             </ListItemButton>
@@ -82,7 +82,7 @@ export default function Actions ({matches, onLogin , onLogout}) {
         anchorEl={anchorEl}
         open = {anchorEl !== null}
         onClose = {() => setAnchorEl(null)}>
-            {! user && <MenuItem onClick = {onLogin}>Login</MenuItem>}
+            {!user && <MenuItem onClick = {onLogin}>Login</MenuItem>}
             { user && <MenuItem onClick = {onLogout}>Logout</MenuItem>}
         </Menu>
 

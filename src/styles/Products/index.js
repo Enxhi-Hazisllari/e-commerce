@@ -20,9 +20,7 @@ export const ProductImage = styled("img")(({src,theme})=> ({
     background : Colors.light_gray,
     padding : "10px",
     [theme.breakpoints.down('md')] : {
-        width:'150px',
-        height: "200px",
-        padding:'24px'
+        padding:'15px'
     }
 }))
 export const ProductActionButton = styled(IconButton)(()=> ({
