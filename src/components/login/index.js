@@ -1,7 +1,9 @@
-import { Button, Dialog, DialogContent, DialogTitle, IconButton, TextField, Typography } from "@mui/material";
+import { Button, Dialog, DialogContent, DialogTitle, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import CloseIcon from '@mui/icons-material/Close';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import KeyIcon from '@mui/icons-material/Key';
 import { useState } from "react";
 import { firebasedb } from "../../services/firebase/db";
 
@@ -14,12 +16,16 @@ export default function Login({open,onClose}) {
     const[lastNameError, setLastNameError]= useState('');
     const[emailError, setEmailError]= useState('');
     const[passwordError, setPasswordError]= useState('');
+    const[emailLoginError, setEmailLoginError]= useState('');
+    const[passwordLoginError, setPasswordLoginError]= useState('');
 
     const [form ,setForm] = useState({
         firstname: '',
         lastname : '',
         email : '',
-        password: ''
+        password: '',
+        emailLogin: '',
+        passwordLogin: '',
     })
 
     const handleJoinUsSubmit = async (event) => {
@@ -80,24 +86,24 @@ export default function Login({open,onClose}) {
         const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/; // Min 1 uppercase letter.Min 1 lowercase letter.Min 1 special character.Min 1 number.Min 8 characters.Max 30 characters.
         
-        if (!form.email || !form.email.length) {
-            setEmailError("Email is required")
+        if (!form.emailLogin || !form.emailLogin.length) {
+            setEmailLoginError("Email is required")
             return false;
-        } else if(!regexEmail.test(form.email)){
-            setEmailError("Email is not valid")
+        } else if(!regexEmail.test(form.emailLogin)){
+            setEmailLoginError("Email is not valid")
             return false;
         }else{
-            setEmailError("")
+            setEmailLoginError("")
         }
 
-        if (!form.password || !form.password.length) {
-            setPasswordError("Password is required")
+        if (!form.passwordLogin || !form.passwordLogin.length) {
+            setPasswordLoginError("Password is required")
             return false;
-        } else if(!regexPassword.test(form.password)){
-            setPasswordError("Password is not valid")
+        } else if(!regexPassword.test(form.passwordLogin)){
+            setPasswordLoginError("Password is not valid")
             return false;
         }else{
-            setPasswordError("")
+            setPasswordLoginError("")
         }
 
         setLoading(true);
@@ -166,6 +172,13 @@ export default function Login({open,onClose}) {
                         value={form.email}
                         helperText={emailError}
                         onChange={(event) => handleFormFieldUpdate(event.target.value , 'email')}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <AccountCircleIcon />
+                                </InputAdornment>
+                            )
+                        }}
                         />
                         <TextField
                         error={passwordError && passwordError.length ? true : false}
@@ -177,9 +190,16 @@ export default function Login({open,onClose}) {
                         value={form.password}
                         helperText={passwordError}
                         onChange={(event) => handleFormFieldUpdate(event.target.value , 'password')}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <KeyIcon />
+                                </InputAdornment>
+                            )
+                        }}
                         />
                         <Button disabled={loading} fullWidth type = 'submit' variant="contained"> 
-                        {loading ? "Please wait .." : "Sign up" }
+                        {loading ? "Please wait..." : "Sign up" }
                         </Button>
                         </form>
 
@@ -195,29 +215,42 @@ export default function Login({open,onClose}) {
                             sx={{width: '100%'}}>
                             <form onSubmit={handleLoginSubmit}>    
                             <TextField
-                            error={emailError && emailError.length ? true : false}
+                            error={emailLoginError && emailLoginError.length ? true : false}
                             label={'Email'}
                             variant = 'standard'
                             sx={{mb:2}}
                             fullWidth
-                            value={form.email}
-                            helperText={emailError}
-                            onChange={(event) => handleFormFieldUpdate(event.target.value , 'email')}
+                            value={form.emailLogin}
+                            helperText={emailLoginError}
+                            onChange={(event) => handleFormFieldUpdate(event.target.value , 'emailLogin')}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <AccountCircleIcon />
+                                    </InputAdornment>
+                                )
+                            }}
                             />
                             <TextField
-                            error={passwordError && passwordError.length ? true : false}
+                            error={passwordLoginError && passwordLoginError.length ? true : false}
                             label={'Password'}
                             type="password"
                             variant = 'standard'
                             sx={{mb:2}}
                             fullWidth
-                            value={form.password}
-                            helperText={passwordError}
-                            onChange={(event) => handleFormFieldUpdate(event.target.value , 'password')}
+                            value={form.passwordLogin}
+                            helperText={passwordLoginError}
+                            onChange={(event) => handleFormFieldUpdate(event.target.value , 'passwordLogin')}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <KeyIcon />
+                                    </InputAdornment>
+                                )
+                            }}
                             />
-
                             <Button disabled={loading} fullWidth type = 'submit' variant="contained"> 
-                            {loading ? "Please wait .." : "Log in" }
+                            {loading ? "Please wait..." : "Log in" }
                             </Button>
                             </form>
 

@@ -1,4 +1,3 @@
-
 import { initializeApp } from "firebase/app";
 import 'firebase/auth';
 import { createUserWithEmailAndPassword, updateProfile,getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
@@ -27,9 +26,9 @@ async function register ({firstname,lastname,email,password}) {
 
     await updateProfile(resp.user, {displayName: `${firstname} ${lastname}`});
 }
-async function login({email,password}){
+async function login({emailLogin,passwordLogin}){
     const resp = await signInWithEmailAndPassword(
-        auth , email , password
+        auth , emailLogin , passwordLogin
     )
     return resp.user
 }
