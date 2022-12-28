@@ -23,6 +23,16 @@ export const ProductImage = styled("img")(({src,theme})=> ({
         padding:'15px'
     }
 }))
+export const AllProductImage = styled("img")(({src,theme})=> ({
+    src : `url(${src})`,
+    width: "100%",
+    height: "100%",
+    background : Colors.light_gray,
+    padding : "10px",
+    [theme.breakpoints.down('md')] : {
+        padding:'15px',
+    }
+}))
 export const ProductActionButton = styled(IconButton)(()=> ({
     background : Colors.white,
     margin : 4,

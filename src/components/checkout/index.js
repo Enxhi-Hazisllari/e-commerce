@@ -34,9 +34,8 @@ export default function Checkout() {
             }
         }}
         > 
-        <Box 
-        sx={{mt:2}}
-        >
+        <Box sx={{mt:2}}>
+
         <Cards
         cvc={cvc}
         expiry={expiry}
@@ -44,31 +43,32 @@ export default function Checkout() {
         name={name}
         number={number}
         />
+        
         </Box>
        <Box 
-            sx={{pd : 4 , mt :2 , mb:2}}
+            sx={{pd: 4, mt: 2, mb:2}}
             display = 'flex'
             justifyContent={'center'}
             flexDirection= 'column'
             alignItems={'center'}
             >
-            <TextField
+            <TextField  sx={{pd: 4, mt: 2}}
             type="tel"
             name="number"
             val={number}
-            placeholder={"Enter Number"}
+            placeholder={"Card Number"}
             onChange={e => setNumber(e.target.value)}
             onFocus={e=>setFocus(e.target.name)}
             />
-            <TextField
-            type="tel"
+            <TextField sx={{pd: 4, mt: 2}}
+            type="text"
             name="name"
             val={name}
             placeholder={"Enter Name"}
             onChange={e => setName(e.target.value)}
             onFocus={e=>setFocus(e.target.name)}
             />
-            <TextField
+            <TextField sx={{pd: 4, mt: 2}}
             type="tel"
             name="expiry"
             val={expiry}
@@ -76,7 +76,7 @@ export default function Checkout() {
             onChange={e => setExpiry(e.target.value)}
             onFocus={e=>setFocus(e.target.name)}
             />
-            <TextField
+            <TextField sx={{pd: 4, mt: 2, mb:2}}
             type="tel"
             name="cvc"
             val={cvc}
@@ -92,12 +92,8 @@ export default function Checkout() {
         alignItems={'center'}
         >
             <Button 
-            variant='contained'
-            
-            sx={{
-                width: '40%',
-                mt: 3,   
-            }}
+            variant='contained'          
+            sx={{width: '40%', mt: 3}}
             >
                 Pay now</Button>
             <Button onClick={() => setShowCheckout(false)}>Cancel</Button>

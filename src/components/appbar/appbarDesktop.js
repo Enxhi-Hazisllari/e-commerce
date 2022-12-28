@@ -10,7 +10,7 @@ export default function AppbarDesktop({matches, onLoginClick , onLogoutClick}) {
 
     return (
         <AppbarContainer>
-        <AppbarHeader>my Store</AppbarHeader>
+        <AppbarHeader>My Store</AppbarHeader>
         <MyList type="row">
         <ListItemText primary="Home" />
         <ListItemText primary="Categories" />

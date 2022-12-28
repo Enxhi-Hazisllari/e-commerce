@@ -24,8 +24,7 @@ export default function SingleProductDesktop({product,matches}){
         setShowOptions(false)
     }
     return (
-        <>
-        
+        <>  
         <Product onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <ProductImage src={product.image} />
             <ProductFavButton isFav={0}>

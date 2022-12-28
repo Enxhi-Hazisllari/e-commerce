@@ -14,6 +14,7 @@ export default function SingleProduct({product,matches}){
     =useDialogModel(ProductDetail, { product })
 
     const {addToCart , addToCartText} = useCart(product)
+    
     return (
         <>
         <Product>

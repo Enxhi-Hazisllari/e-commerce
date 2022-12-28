@@ -30,7 +30,6 @@ export  function ProductDetail({open, onClose ,product}) {
     const matches= useMediaQuery(theme.breakpoints.down('md'))
 
     const { addToCart, addToCartText } = useCart(product)
-    // console.log(product);
 
     return (
         <Fragment>
@@ -68,10 +67,9 @@ export  function ProductDetail({open, onClose ,product}) {
                     </Typography>
                     <Typography variant='body'>
                         {product.description}
-                        {product.description}
                     </Typography>
                     <Box 
-                    sx= {{mt : 4}} display = 'flex' alignItems={'center'} justifyContent = 'space-between'>
+                    sx= {{mt : 4}} display = {'flex'} alignItems={'center'} justifyContent = 'space-between'>
 
                     <Button variant = 'contained' 
                         onClick={() => {
@@ -91,8 +89,8 @@ export  function ProductDetail({open, onClose ,product}) {
                         color:Colors.light
                     }}>
                         <FacebookIcon />
-                        <TwitterIcon sx = {{pl : theme.spacing(4)}}/>
-                        <InstagramIcon sx = {{pl : theme.spacing(4)}}/>
+                        <TwitterIcon />
+                        <InstagramIcon />
                     </Box>
                 </ProductDetailInfoWrapper>
 
