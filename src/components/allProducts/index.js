@@ -57,7 +57,7 @@ export function AllProducts({open, onClose}) {
         variant = 'permanent'
         open= {open}
         fullScreen>
-            <DialogTitle sx={{background: Colors.secondary}}>
+            <DialogTitle sx={{background: Colors.secondary, position:'fixed', width:'100%'}}>
                 <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
                     ALL PRODUCTS
                     <IconButton onClick={onClose}>

@@ -1,24 +1,22 @@
 import React from "react";
-import { Button, Drawer, TextField, useMediaQuery } from "@mui/material";
+import { Button, Drawer, useMediaQuery } from "@mui/material";
+import { Form, Alert } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Colors } from "../../styles/theme";
 import { useUIContext } from "../../context/ui";
 import { useTheme } from "@emotion/react";
-import { useState } from "react";
 import 'react-credit-cards/es/styles-compiled.css';
 import Cards from 'react-credit-cards'
 import { Box } from "@mui/system";
+import useForm from "../../hooks/useValidateCard";
 
 export default function Checkout() {
 
-    const {showCheckout,setShowCheckout} = useUIContext()
+    const {showCheckout,setShowCheckout} = useUIContext();
+    const { handleChange, handleFocus, handleSubmit, values, errors } = useForm();
+    
     const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.down('md'))
-
-    const [number, setNumber] = useState('');
-    const [name, setName] = useState('');
-    const [expiry, setExpiry] = useState('');
-    const [cvc, setCvc] = useState('');
-    const [focus, setFocus] = useState('');
+    const matches = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <Drawer 
@@ -37,67 +35,99 @@ export default function Checkout() {
         <Box sx={{mt:2}}>
 
         <Cards
-        cvc={cvc}
-        expiry={expiry}
-        focused={focus}
-        name={name}
-        number={number}
+            cvc={values.cardSecurityCode}
+            expiry={values.cardExpiration}
+            focused={values.focus}
+            name={values.cardName}
+            number={values.cardNumber}
         />
         
         </Box>
-       <Box 
-            sx={{pd: 4, mt: 2, mb:2}}
-            display = 'flex'
-            justifyContent={'center'}
-            flexDirection= 'column'
-            alignItems={'center'}
-            >
-            <TextField  sx={{pd: 4, mt: 2}}
-            type="tel"
-            name="number"
-            val={number}
-            placeholder={"Card Number"}
-            onChange={e => setNumber(e.target.value)}
-            onFocus={e=>setFocus(e.target.name)}
-            />
-            <TextField sx={{pd: 4, mt: 2}}
-            type="text"
-            name="name"
-            val={name}
-            placeholder={"Enter Name"}
-            onChange={e => setName(e.target.value)}
-            onFocus={e=>setFocus(e.target.name)}
-            />
-            <TextField sx={{pd: 4, mt: 2}}
-            type="tel"
-            name="expiry"
-            val={expiry}
-            placeholder={"Enter Expiry date"}
-            onChange={e => setExpiry(e.target.value)}
-            onFocus={e=>setFocus(e.target.name)}
-            />
-            <TextField sx={{pd: 4, mt: 2, mb:2}}
-            type="tel"
-            name="cvc"
-            val={cvc}
-            placeholder={"Enter Cvc"}
-            onChange={e => setCvc(e.target.value)}
-            onFocus={e=>setFocus(e.target.name)}
-            />
-        </Box>
-        <Box
-        display={'flex'}
-        flexDirection='column'
-        alignContent={'center'}
-        alignItems={'center'}
-        >
-            <Button 
-            variant='contained'          
-            sx={{width: '40%', mt: 3}}
-            >
-                Pay now</Button>
-            <Button onClick={() => setShowCheckout(false)}>Cancel</Button>
-        </Box>
+        <div style={{display: 'flex', justifyContent:'center', alignItems:'center', padding: 4, margin: 2}}>
+            <Form onSubmit={handleSubmit} style={{justifyContent:'center', alignItems:'center', padding: 4, margin: 2, width:'80%'}}>
+
+                    <Form.Group style={{padding: 4, margin: 1}}>
+                        <Form.Control style={{padding: 10,}}
+                            type="number"
+                            id="cardNumber"
+                            data-testid="cardNumber"
+                            name="cardNumber"
+                            placeholder="Card Number"
+                            value={values.cardNumber}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            isValid={errors.cnumber}
+                        />
+                    </Form.Group>
+
+                    <Form.Group style={{padding: 4, margin: 1}}>
+                        <Form.Control
+                            style={{padding: 10,}}
+                            type="text"
+                            id="cardName"
+                            data-testid="cardName"
+                            name="cardName"
+                            placeholder="Card Holder Name"
+                            value={values.cardName}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            isValid={errors.cname}
+                        />
+                    </Form.Group>
+
+                    <Form.Group style={{padding: 4, margin: 1}}>
+                        <Form.Control
+                            style={{padding: 10,}}
+                            type="text"
+                            id="cardExpiration"
+                            data-testid="cardExpiration"
+                            name="cardExpiration"
+                            placeholder="Expiration Date"
+                            value={values.cardExpiration}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            isValid={errors.cexp}
+                        />
+                    </Form.Group>
+
+                    <Form.Group style={{padding: 4, margin: 1}}>
+                        <Form.Control
+                            style={{padding: 10,}}
+                            type="number"
+                            id="cardSecurityCode"
+                            data-testid="cardSecurityCode"
+                            name="cardSecurityCode"
+                            placeholder="Security Code"
+                            value={values.cardSecurityCode}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            isValid={errors.ccvv}
+                        />
+                    </Form.Group>
+
+                    <Alert 
+                        style={{margin: 10,}}
+                        id="alertMessage"
+                        data-testid="alertMessage"
+                        variant={errors.variant}
+                        show={errors.show}
+                        >
+                        {errors.message}
+                    </Alert>{" "}
+
+                    <Box
+                    display={'flex'}
+                    flexDirection='column'
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    >
+                    <Button variant='contained'sx={{width: '40%', mt: 3}} data-testid="validateButton" id="validateButton"type="submit"
+                    >Pay now</Button>
+
+                    <Button onClick={() => setShowCheckout(false)}>Cancel</Button>
+                    </Box>
+            </Form>
+        </div>
         </Drawer>
     )
 }
